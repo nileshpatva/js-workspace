@@ -1,0 +1,9 @@
+{
+  "name": "@moto/data-structures",
+  "version": "0.0.1",
+  "peerDependencies": {
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  }
+}
