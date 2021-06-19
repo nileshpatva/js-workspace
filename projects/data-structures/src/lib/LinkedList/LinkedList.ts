@@ -209,6 +209,14 @@ export class LinkedList<T> {
   }
 
   /**
+   * Returns a string representation of a LinkedList
+   * @returns string value
+   */
+  toString() {
+    return this.toArray().toString();
+  }
+
+  /**
    * method to get previous node
    * @param node node whose previous node is required
    * @returns previous node

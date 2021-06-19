@@ -4,8 +4,4 @@ export class LinkedListNode<T> {
   constructor(public val: T) {
     this.next = null as any;
   }
-
-  *[Symbol.toStringTag]() {
-    return this.val;
-  }
 }
