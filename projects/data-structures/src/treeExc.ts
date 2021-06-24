@@ -92,3 +92,41 @@ function minVal(root: TreeNode<number>): number {
 }
 
 minVal(tree.root as TreeNode<number>);
+
+function equals(rootA: TreeNode<number>, rootB: TreeNode<number>): boolean {
+  // both the nodes are null so return true;
+  if (!rootA && !rootB) return true;
+  // both the nodes are not null
+  if (rootA && rootB)
+    return (
+      rootA.value === rootB.value &&
+      equals(rootA.left, rootB.left) &&
+      equals(rootA.right, rootB.right)
+    );
+  // either of the nodes are null
+  return false;
+}
+
+console.log(equals(tree.root as any, tree.root as any));
+
+function isBinarySearchTree(
+  root: TreeNode<number>,
+  min: number,
+  max: number
+): boolean {
+  if (!root) return true;
+
+  // out of range for BSTs
+  if (root.value < min || root.value > max) {
+    return false;
+  }
+
+  return (
+    isBinarySearchTree(root.left, min, root.value - 1) &&
+    isBinarySearchTree(root.right, root.value - 1, max)
+  );
+}
+
+tree.swapRoot(); // now not a BST
+
+console.log(isBinarySearchTree(tree.root as any, -Infinity, Infinity));

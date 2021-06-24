@@ -37,6 +37,13 @@ export class Tree<T> {
     return !!this.lookup(value);
   }
 
+  // just to mesh with BST for validate function
+  swapRoot() {
+    let temp = this.root.left;
+    this.root.left = this.root.right;
+    this.root.right = temp;
+  }
+
   private lookup(value: T): TreeNode<T> | null {
     let current = this.root;
 

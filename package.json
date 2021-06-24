@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:@moto/data-structures": "ng build @moto/data-structures",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
