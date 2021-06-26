@@ -1,5 +1,7 @@
+import { AVLTree } from './lib/AVLTree';
 import { Tree, TreeNode } from './lib/Tree';
 
+//#region Tree
 const tree = new Tree();
 
 tree.insert(7);
@@ -130,3 +132,75 @@ function isBinarySearchTree(
 tree.swapRoot(); // now not a BST
 
 console.log(isBinarySearchTree(tree.root as any, -Infinity, Infinity));
+
+function nodesAtDistance(
+  root: TreeNode<any>,
+  distance: number,
+  list: Array<any> = []
+) {
+  if (!root) return list;
+  if (distance === 0) list.push(root.value);
+
+  nodesAtDistance(root.left, distance - 1, list);
+  nodesAtDistance(root.right, distance - 1, list);
+
+  return list;
+}
+
+console.log(nodesAtDistance(tree.root, 2));
+
+function levelOrderTraversal(root: TreeNode<any>) {
+  for (let i = 0; i <= heightOfTree(root); i++) {
+    for (let node of nodesAtDistance(root, i)) {
+      console.log(node);
+    }
+  }
+}
+
+levelOrderTraversal(tree.root);
+
+function LowestCommonAncestor(
+  root: TreeNode<any>,
+  n1: number,
+  n2: number
+): TreeNode<any> | null {
+  if (!root) return root;
+  if (root.value === n1 || root.value === n2) return root;
+  let left = LowestCommonAncestor(root.left, n1, n2);
+  let right = LowestCommonAncestor(root.right, n1, n2);
+  if (left && right) return root;
+  if (!left && !right) return null;
+  if (left) {
+    return LowestCommonAncestor(root.left, n1, n2);
+  } else {
+    return LowestCommonAncestor(root.right, n1, n2);
+  }
+}
+
+function getLevel(root: TreeNode<any>, k: number, level: number): number {
+  if (!root) return -1;
+  if (root.value === k) return level;
+  const left = getLevel(root.left, k, level + 1);
+  return left !== -1 ? left : getLevel(root.right, k, level + 1);
+}
+function findDistance(root: TreeNode<any>, a: number, b: number) {
+  let lca = LowestCommonAncestor(root, a, b);
+  let dist1 = getLevel(lca as any, a, 0);
+  let dist2 = getLevel(lca as any, b, 0);
+  return dist1 + dist2;
+}
+console.log(findDistance(tree.root, 4, 10))
+
+//#endregion Tree
+
+//#region  AVLTree
+
+const avlTree = new AVLTree();
+
+avlTree.insert(5);
+avlTree.insert(6);
+avlTree.insert(7);
+avlTree.insert(10);
+
+console.log(avlTree);
+//#endregion AVLTree
