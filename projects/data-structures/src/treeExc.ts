@@ -13,18 +13,6 @@ tree.insert(8);
 tree.insert(10);
 
 /**
- * BREADTH FIRST or LEVEL ORDER Traversal
- * traversing the tree level by level
- */
-
-// function levelOrderTraversal(root: TreeNode<unknown>) {
-//   if (!root) return;
-//   levelOrderTraversal(root.left);
-//   console.log(root.value);
-//   levelOrderTraversal(root.right);
-// }
-
-/**
  * DEPTH FIRST
  *
  * 1. Pre-Order  => ROOT -> left  -> right
@@ -149,6 +137,11 @@ function nodesAtDistance(
 
 console.log(nodesAtDistance(tree.root, 2));
 
+/**
+ * BREADTH FIRST or LEVEL ORDER Traversal
+ * traversing the tree level by level
+ */
+
 function levelOrderTraversal(root: TreeNode<any>) {
   for (let i = 0; i <= heightOfTree(root); i++) {
     for (let node of nodesAtDistance(root, i)) {
@@ -189,7 +182,7 @@ function findDistance(root: TreeNode<any>, a: number, b: number) {
   let dist2 = getLevel(lca as any, b, 0);
   return dist1 + dist2;
 }
-console.log(findDistance(tree.root, 4, 10))
+console.log(findDistance(tree.root, 4, 10));
 
 //#endregion Tree
 

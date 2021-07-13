@@ -27,12 +27,12 @@ export class AVLTree<T> {
 
   private balance(root: AVLNode<T>): AVLNode<T> {
     if (this.isLeftHeavy(root)) {
-      if (this.balanceFacotor(root.left) < 0) { // left heavy tree
+      if (this.balanceFactor(root.left) < 0) { // left heavy tree
         root.left = this.rotateLeft(this.root.left);
       }
       return this.rotateRight(root);
     } else if (this.isRightHeavy(root)) { // Right heavy tree
-      if (this.balanceFacotor(root.right) > 0) {
+      if (this.balanceFactor(root.right) > 0) {
         root.right = this.rotateRight(root.right);
       }
       return this.rotateLeft(root);
@@ -63,24 +63,20 @@ export class AVLTree<T> {
 
     return root;
   }
-
   private setHeight(node: AVLNode<T>) {
     node.height = Math.max(this.height(node.left), this.height(node.right)) + 1;
   }
-
   private height(node: AVLNode<T>) {
     return !node ? -1 : node.height;
   }
-
   private isLeftHeavy(node: AVLNode<T>) {
-    return this.balanceFacotor(node) > 1;
+    return this.balanceFactor(node) > 1;
   }
-
   private isRightHeavy(node: AVLNode<T>) {
-    return this.balanceFacotor(node) < -1;
+    return this.balanceFactor(node) < -1;
   }
 
-  private balanceFacotor(node: AVLNode<T>) {
+  private balanceFactor(node: AVLNode<T>) {
     return !node ? 0 : this.height(node.left) - this.height(node.right);
   }
 }

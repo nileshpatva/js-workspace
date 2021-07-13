@@ -14,12 +14,12 @@ export class Stack<T> {
   }
 
   pop() {
-    if (this.count === 0) throw new Error('Illegal State Exception');
+    if (this.isEmpty()) throw new Error('Illegal State Exception');
     return this.items[--this.count];
   }
 
   peek() {
-    if (this.count === 0) throw new Error('Illegal State Exception');
+    if (this.isEmpty()) throw new Error('Illegal State Exception');
     return this.items[this.count - 1];
   }
 
